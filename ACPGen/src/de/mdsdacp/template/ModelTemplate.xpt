@@ -1,0 +1,43 @@
+«IMPORT ecore»
+
+«EXTENSION de::mdsdacp::template::extensions::DefaultComments»
+
+«DEFINE root FOR EPackage»
+	«EXPAND models FOREACH eClassifiers» 
+«ENDDEFINE»
+
+«DEFINE models FOR EClassifier»
+	«FILE "de/mdsdacp/model/"+name.toFirstUpper()+".java"-»
+		package de.mdsdacp.model;
+	
+		/**
+		 * Generated model class for usage in your application, defined by classifiers in ecore diagram
+		 * 		
+		 * «modifyWarningComment()»	 
+		 */
+		public class «name.toFirstUpper()»{
+			«FOREACH eContents.typeSelect(EAttribute) AS attr-»
+				private «attr.eType.instanceClassName» «attr.name.toLowerCase()»;				
+			«ENDFOREACH»	
+			«FOREACH eContents.typeSelect(EAttribute) AS attr»
+				/**
+	 			 * Set «attr.name.toLowerCase()»
+	 			 *
+	 			 * @param «attr.name.toLowerCase()» from type «attr.eType.instanceClassName»
+	 			 */
+				public void set«attr.name.toFirstUpper()»(«attr.eType.instanceClassName» «attr.name.toLowerCase()»){
+					this.«attr.name.toLowerCase()» = «attr.name.toLowerCase()»;
+				}
+				
+				/**
+				 * Get «attr.name.toLowerCase()»
+				 *
+				 * @return «attr.name.toLowerCase()» from type «attr.eType.instanceClassName»				
+				 */
+				public «attr.eType.instanceClassName» get«attr.name.toFirstUpper()»(){
+					return this.«attr.name.toLowerCase()»;
+				}				
+			«ENDFOREACH»			
+		}
+	«ENDFILE»
+«ENDDEFINE»
