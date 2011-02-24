@@ -7,18 +7,29 @@ import java.io.IOException;
 
 import de.mdsdacp.workflow.config.ACPWorkflowConfig;
 
+/**
+ * Simple Counter
+ * Is required for the database version, which should be count up, if a new version is available
+ * 
+ * @author Frederik Goetz
+ */
 public class Counter {
-	private final static boolean DEBUG = false;
-	
+    private final static boolean DEBUG = false;
+
+    /**
+     * Raise counter +1 and get current count value
+     * 
+     * @return Integer with the current count value
+     */
     public static Integer countUp() {
-    	String genPath = ACPWorkflowConfig.getInstance().getGenPath();
-    	if(DEBUG){
-    		if(genPath==null){
-        		genPath = "src-gen";
-        	}	
-    	}
-    	
-        File file = new File(genPath+"/gen.properties");
+        String genPath = ACPWorkflowConfig.getInstance().getGenPath();
+        if (DEBUG) {
+            if (genPath == null) {
+                genPath = "src-gen";
+            }
+        }
+
+        File file = new File(genPath + "/gen.properties");
         Integer count = 0;
         if (file.exists()) {
             count = getCount();
@@ -35,14 +46,14 @@ public class Counter {
     }
 
     private static Integer getCount() {
-    	String genPath = ACPWorkflowConfig.getInstance().getGenPath();
-    	if(DEBUG){
-        	if(genPath==null){
-        		genPath = "src-gen";
-        	}    		
-    	}
+        String genPath = ACPWorkflowConfig.getInstance().getGenPath();
+        if (DEBUG) {
+            if (genPath == null) {
+                genPath = "src-gen";
+            }
+        }
 
-        File file = new File(genPath+"/gen.properties");
+        File file = new File(genPath + "/gen.properties");
         Integer count = 0;
         if (file.exists()) {
             String countVal = "";
