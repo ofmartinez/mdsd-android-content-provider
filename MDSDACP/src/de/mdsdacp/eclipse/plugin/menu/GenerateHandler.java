@@ -36,52 +36,59 @@ import org.xml.sax.SAXException;
 import de.mdsdacp.eclipse.plugin.util.ContentValues;
 import de.mdsdacp.launch.ACPGenLauncher;
 
+/**
+ * GerneateHandler
+ * Used to generate the content provider from the ecore model 
+ * 
+ * @author Frederik Goetz
+ */
 public class GenerateHandler extends AbstractHandler {
     private static final String TAG = "de.mdsdacp.eclipse.plugin.menu.GenerateHandler";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     @Override
-    public Object execute(ExecutionEvent event) throws ExecutionException {        
+    public Object execute(ExecutionEvent event) throws ExecutionException {
         if (DEBUG) {
-        	System.out.println("DEBUG: "+TAG);
+            System.out.println("DEBUG: " + TAG);
         }
-	    
+
         IStructuredSelection selection = (IStructuredSelection) HandlerUtil.getActiveSite(event).getSelectionProvider()
                 .getSelection();
         Object obj = selection.getFirstElement();
 
-        if (obj instanceof IFile) {            
+        if (obj instanceof IFile) {
             ProgressMonitorDialog dialog = new ProgressMonitorDialog(HandlerUtil.getActiveShell(event));
             IProgressMonitor monitor = dialog.getProgressMonitor();
-        
-    		dialog.open();
-    	    monitor.beginTask("Generate content provider...", 0);
-        	
+
+            dialog.open();
+            monitor.beginTask("Generate content provider...", 0);
+
             IFile file = (IFile) obj;
             try {
                 monitor.subTask("Create source folder...");
                 monitor.worked(1);
-            	
-            	IContainer container = file.getProject();
-            	
+
+                IContainer container = file.getProject();
+
                 final IFolder srcGenFolder = container.getFolder(new Path(ContentValues.SRC_GEN_PATH));
-                
+
                 if (!srcGenFolder.exists()) {
-                	try {
-						createSrcGen(container);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}    
+                    try {
+                        createSrcGen(container);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            	String ecorePath = file.getLocation().toOSString();
-            	String projectSrcPath = getSourceFolderPathFromClasspath(file.getProject().getFile(".classpath").getContents());
-            	String srcGenPath = file.getProject().getFolder(projectSrcPath).getLocation().toOSString();
+                String ecorePath = file.getLocation().toOSString();
+                String projectSrcPath = getSourceFolderPathFromClasspath(file.getProject().getFile(".classpath")
+                        .getContents());
+                String srcGenPath = file.getProject().getFolder(projectSrcPath).getLocation().toOSString();
 
                 monitor.subTask("Generate content provider ...");
                 monitor.worked(2);
-            	
+
                 ACPGenLauncher.run(null, ecorePath, srcGenPath);
-                
+
                 file.getProject().refreshLocal(IProject.DEPTH_INFINITE, null);
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
@@ -91,52 +98,45 @@ public class GenerateHandler extends AbstractHandler {
                 e.printStackTrace();
             } catch (CoreException e) {
                 e.printStackTrace();
-            }finally{
-            	monitor.done();
-            	dialog.close();
+            } finally {
+                monitor.done();
+                dialog.close();
             }
         }
 
         return null;
     }
-    private void createSrcGen(final IContainer container) throws Exception{
+
+    private void createSrcGen(final IContainer container) throws Exception {
         final IFolder folder = container.getFolder(new Path(ContentValues.SRC_GEN_PATH));
         if (!folder.exists()) {
-            folder.create(true, true, null);            	
+            folder.create(true, true, null);
         }
-    	addSrcGenFolderToClasspath(container);
+        addSrcGenFolderToClasspath(container);
     }
-    
-    private void addSrcGenFolderToClasspath(IContainer container) throws Exception{
-    	IFile classpath = container.getFile(new Path(".classpath"));
-    	
-    	if(getSourceFolderPathFromClasspath(classpath.getContents())==null){
-    		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+
+    private void addSrcGenFolderToClasspath(IContainer container) throws Exception {
+        IFile classpath = container.getFile(new Path(".classpath"));
+
+        if (getSourceFolderPathFromClasspath(classpath.getContents()) == null) {
+            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = builder.parse(classpath.getContents());
-            
+
             Element element = doc.createElement("classpathentry");
             element.setAttribute("kind", "src");
             element.setAttribute("path", ContentValues.SRC_GEN_PATH);
-            
+
             doc.getElementsByTagName("classpath").item(0).appendChild(element);
-            
+
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             Source xmlSource = new DOMSource(doc);
             Result outputTarget = new StreamResult(outputStream);
             TransformerFactory.newInstance().newTransformer().transform(xmlSource, outputTarget);
-            
-            classpath.setContents(new ByteArrayInputStream(outputStream.toByteArray()), true, true, null);	
-    	}
+
+            classpath.setContents(new ByteArrayInputStream(outputStream.toByteArray()), true, true, null);
+        }
     }
 
-    /**
-     * 
-     * @param is
-     * @return
-     * @throws ParserConfigurationException
-     * @throws SAXException
-     * @throws IOException
-     */
     private String getSourceFolderPathFromClasspath(InputStream is) throws ParserConfigurationException, SAXException,
             IOException {
         DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();

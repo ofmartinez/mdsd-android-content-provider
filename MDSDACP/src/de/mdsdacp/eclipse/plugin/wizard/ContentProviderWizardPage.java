@@ -22,6 +22,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 
+/**
+ * ContentProviderWizardPage
+ * Simple wizard page
+ * 
+ * @author Frederik Goetz
+ */
 public class ContentProviderWizardPage extends WizardPage {
     private Text containerText;
     private Text fileText;
