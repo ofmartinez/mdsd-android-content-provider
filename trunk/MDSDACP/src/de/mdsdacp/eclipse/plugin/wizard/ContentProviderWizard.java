@@ -35,7 +35,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.handlers.HandlerUtil;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -43,6 +42,12 @@ import org.xml.sax.SAXException;
 
 import de.mdsdacp.eclipse.plugin.Activator;
 
+/**
+ * ContentProviderWizard
+ * Wizard functionality: creates the model folder and the ecore + ecorediag 
+ * 
+ * @author Frederik Goetz
+ */
 public class ContentProviderWizard extends Wizard implements INewWizard {
     private ContentProviderWizardPage page;
     private ISelection selection;
@@ -126,11 +131,9 @@ public class ContentProviderWizard extends Wizard implements INewWizard {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         monitor.worked(1);
     }
-    
-   
 
     private InputStream getEcoreFileContent() {
         try {
