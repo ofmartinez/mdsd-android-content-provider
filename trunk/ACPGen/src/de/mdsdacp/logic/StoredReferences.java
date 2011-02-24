@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class stores the dependencies between the different database entries.
+ * The ecore stores the over direction, but the reverse direction is required. 
+ * 
+ * @author Frederik Goetz
+ */
 public class StoredReferences {
     private static HashMap<String, List<String>> references = new HashMap<String, List<String>>();
 
@@ -20,9 +26,9 @@ public class StoredReferences {
     public static List<String> getReferences(String key) {
         return references.get(key);
     }
-    
-    public static void clearReferences(){
-    	references.clear();
+
+    public static void clearReferences() {
+        references.clear();
     }
 
 }
