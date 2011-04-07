@@ -16,9 +16,27 @@
 		 * «modifyWarningComment()»	 
 		 */
 		public class «name.toFirstUpper()»{
+				private Long id;
 			«FOREACH eContents.typeSelect(EAttribute) AS attr-»
 				private «attr.eType.instanceClassName» «attr.name.toLowerCase()»;				
 			«ENDFOREACH»	
+				/**
+	 			 * Set id
+	 			 *
+	 			 * @param id from type java.lang.Long
+	 			 */
+				public void setId(Long id){
+					this.id = id;
+				}
+				
+	 			/**
+				 * Get id
+				 *
+				 * @return id from type java.lang.Long				
+				 */
+				public Long getId(){
+					return this.id;
+				} 
 			«FOREACH eContents.typeSelect(EAttribute) AS attr»
 				/**
 	 			 * Set «attr.name.toLowerCase()»
