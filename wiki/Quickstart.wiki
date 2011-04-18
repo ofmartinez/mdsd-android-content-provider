@@ -16,4 +16,4 @@
   # Open the *ContentProvider.xml* inside the src-gen folder and copy the line which starts with *<provier ...* and ends with *..defaultname" />*<br/>[http://www.gfred.de/acp/016.png]<br/>
   # Open the *AndroidManifest.xml* of your project.<br/>[http://www.gfred.de/acp/017.png]<br/>
   # Insert the copied line inside the *AndroidManifest.xml* inside the <application> element<br/>[http://www.gfred.de/acp/018.png]<br/>
- # Now the content provider is ready to use inside your Android project. How to consume and use the Android Content Provider is described in another quickstart tutorial here:
+ # Now the content provider is ready to use inside your Android project. How to consume and use the Android Content Provider is described in another quickstart tutorial here: [http://code.google.com/p/mdsd-android-content-provider/wiki/ConsumeProvider]
