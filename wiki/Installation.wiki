@@ -1,4 +1,4 @@
-#summary how to install the plugin
+#summary How to install the plugin
 #labels Featured,Phase-Deploy
 
 = Installation Guide =
