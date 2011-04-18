@@ -1,4 +1,4 @@
-#summary How to work with the Android Content Provider
+#summary How to use the Android Content Provider
 #labels Phase-Implementation,Phase-Deploy
 
 = Work with the Android Content Provider =
