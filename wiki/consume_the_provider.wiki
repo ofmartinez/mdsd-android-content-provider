@@ -1,0 +1,8 @@
+#summary Quickstart to work with the Android Content Provider
+#labels Featured,Phase-Implementation,Phase-Deploy
+
+= Work with the Android Content Provider =
+This quickstart shows how to work with the content provider and insert a new people into the content provider.
+ # Open your Activty class and first create an Uri under which the Content Provider Type *People* is accessible.<br/>[http://www.gfred.de/acp/019.png]<br/>
+ # Create a new people as *ContentValues* and put any name and any surname inside the object. ContentValues is a datatype which is required from the content provider.<br/>[http://www.gfred.de/acp/020.png]<br/> 
+ # Finally insert the new People, represented as ContentValues object, into the Content Provider. This is possible with the *ContentResolver*.<br/>[http://www.gfred.de/acp/021.png]<br/>With the ContentResolver you are alse able to query, delete and update values from the content provider.
