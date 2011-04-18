@@ -1,14 +1,12 @@
-#summary One-sentence summary of this page.
+#summary how to install the plugin
 #labels Featured,Phase-Deploy
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= Installation Guide =
+ 
+ # Download Eclipse Modeling Tools (includes Incubating Components) from [http://www.eclipse.org]<br/>[http://www.gfred.de/acp/001.png]<br/>
+ # Extract and execute the downloaded Eclipse version
+ # Goto the *Eclipse Modeling Components Discovery* (Help -> Install Modeling Components) and download/install the *Xtext* and *Xpand* component <br/>[http://www.gfred.de/acp/003.png]<br/>
+ # Restart Eclipse and install the Android SDK [http://developer.android.com/sdk/index.html] and the Android Development Tools (ADT) for Eclipse: [http://developer.android.com/sdk/eclipse-adt.html] <br/>How to install the ADT is descriped here: [http://developer.android.com/sdk/eclipse-adt.html#installing] <br/>[http://www.gfred.de/acp/004.png]<br/>[http://www.gfred.de/acp/006.png]<br/>
+ # Download the de.mdsdacp.eclipse.plugin_0.9.6.jar and the de.mdsdacp.acpgen_0.9.7.jar Eclipse plugin [http://code.google.com/p/mdsd-android-content-provider/downloads/list] and move these files into the dropins folder inside your Eclipe installation folder<br/>[http://www.gfred.de/acp/005.png]<br/>
+ # Restart Eclipse
+ # Now you have successful installed the *MDSD - Android Content Provider Generation* plugin for Eclipse. Get a quick start here:
