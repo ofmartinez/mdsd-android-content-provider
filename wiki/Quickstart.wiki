@@ -2,12 +2,12 @@
 #labels Featured,Phase-Deploy,Phase-Implementation,Phase-Support
 
 = Quickstart Guide =
- # Create a new Android project. A Hello World example how to create a new Android project is descriped here: [http://developer.android.com/resources/tutorials/hello-world.html]
+ # Create a new Android project. A Hello World example how to create a new Android project is described here: [http://developer.android.com/resources/tutorials/hello-world.html]
  # Create a new model file
   # Right Click on the Android project and click New -> other<br/>[http://www.gfred.de/acp/007.png]<br/>
   # Select *Android Content Provider Model* inside the Android folder.<br/>[http://www.gfred.de/acp/008.png]<br/> 
   # Select a container (your current Android project) and a model filename (model filename should be end with .ecore) <br/>[http://www.gfred.de/acp/009.png]<br/>
-  # A folder model and two files are created inside your Android project<br/>[http://www.gfred.de/acp/010.png]<br/>Both files can be used to develop your domain model. With the *ecorediag* file you are able to design your domain model with a graphical editor. The *ecore* file represents only the xml structure of your model, but you can also create your domain model here.<br/>
+  # A folder *model* and two files are created inside your Android project<br/>[http://www.gfred.de/acp/010.png]<br/>Both files can be used to develop your domain model. With the *ecorediag* file you are able to design your domain model with a graphical editor. The *ecore* file represents only the xml structure of your model, but you can develop your domain model here too.<br/>
  # Create your first domain model with the graphical editor. In the example you create only a very simple domain model with a datatype called People, with two attributes name and surname.<br/>Open the ecorediag file and create your domain model. Create a class and call it *People*. Add two properties *name* and *surname* from the type *EString*. Remember: You can only use the ecore specific datatypes which are the same like the Java simple datatypes only with a prefix character: E.<br/>[http://www.gfred.de/acp/011.png]<br/>Save your model now.<br/>
  # Open the ecore file and see what is happend.<br/>[http://www.gfred.de/acp/013.png]<br/>The ecore file represents your model in xml style. Now right click the ecore file and click *Android Tools -> Generate Android Content Provider* to generate the content provider with your model. <br/>[http://www.gfred.de/acp/014.png]<br/>
  # Now the Android Content Provider classes are generated into the 
