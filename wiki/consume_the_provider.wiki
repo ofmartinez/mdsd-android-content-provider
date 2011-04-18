@@ -1,5 +1,5 @@
 #summary Quickstart to work with the Android Content Provider
-#labels Featured,Phase-Implementation,Phase-Deploy
+#labels Phase-Implementation,Phase-Deploy
 
 = Work with the Android Content Provider =
 This quickstart shows how to work with the content provider and insert a new people into the content provider.
