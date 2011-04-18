@@ -1,4 +1,4 @@
-#summary How to use the plugin. Fast example!
+#summary How to use the plugin.
 #labels Featured,Phase-Deploy,Phase-Implementation,Phase-Support
 
 = Quickstart Guide =
