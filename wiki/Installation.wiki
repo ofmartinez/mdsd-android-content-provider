@@ -9,4 +9,4 @@
  # Restart Eclipse and install the Android SDK [http://developer.android.com/sdk/index.html] and the Android Development Tools (ADT) for Eclipse: [http://developer.android.com/sdk/eclipse-adt.html] <br/>How to install the ADT is descriped here: [http://developer.android.com/sdk/eclipse-adt.html#installing] <br/>[http://www.gfred.de/acp/004.png]<br/>[http://www.gfred.de/acp/006.png]<br/>
  # Download the de.mdsdacp.eclipse.plugin_0.9.6.jar and the de.mdsdacp.acpgen_0.9.7.jar Eclipse plugin [http://code.google.com/p/mdsd-android-content-provider/downloads/list] and move these files into the dropins folder inside your Eclipe installation folder<br/>[http://www.gfred.de/acp/005.png]<br/>
  # Restart Eclipse
- # Now you have successful installed the *MDSD - Android Content Provider Generation* plugin for Eclipse. Get a quick start here:
+ # Now you have successful installed the *MDSD - Android Content Provider Generation* plugin for Eclipse. Get a quickstart here: [http://code.google.com/p/mdsd-android-content-provider/wiki/Quickstart]
