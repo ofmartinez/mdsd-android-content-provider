@@ -37,7 +37,7 @@
 
 			String[] ALL_COLUMNS = new String[] { ID «EXPAND allColumns»}; 			
 						
-			String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
+			String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT"
 			«EXPAND createTableAttributes FOREACH eContents.typeSelect(EAttribute)-»
 			«EXPAND createTableAttributes FOREACH getReferences(name.toFirstUpper())-»+ " )";
 			
