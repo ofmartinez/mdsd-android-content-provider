@@ -65,7 +65,7 @@ public class ACPWorkflowImpl {
          */
         Reader reader = new Reader();
         // String "file:" is required for external files in Eclipse Plugins
-        reader.setUri("file:" + config.getEcorePath());
+        reader.setUri("file:/" + config.getEcorePath());
         reader.setModelSlot("model");
 
         /*

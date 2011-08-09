@@ -44,7 +44,7 @@
 
 		private static final UriMatcher URI_MATCHER;
     	
-    	private Database db = null;
+    	private Database db;
     	
     	«FOREACH eClassifiers AS class ITERATOR iter-»
     		«IF iter.firstIteration-»
@@ -171,14 +171,17 @@ public final int delete(final Uri uri, final String selection, final String[] se
 	«IF !eClassifiers.isEmpty»
 	final SQLiteDatabase dbConnection = db.getWritableDatabase();
     int deleteCount = 0;
+    
     try {
+    	dbConnection.beginTransaction();
+    	
         switch (URI_MATCHER.match(uri)) {        
         «EXPAND deleteCases FOREACH eClassifiers»        
 		default:
 			throw new IllegalArgumentException("Unsupported URI:" + uri);
         }
     } finally {
-        dbConnection.close();
+		dbConnection.endTransaction();
     }
     
 	if (deleteCount > 0) {
@@ -195,9 +198,11 @@ public final int delete(final Uri uri, final String selection, final String[] se
 «DEFINE deleteCases FOR EClassifier-»
 case «name.toUpperCase()»_DIR:
 	deleteCount = dbConnection.delete(«name.toFirstUpper()»Table.TABLE_NAME, selection, selectionArgs);
+	dbConnection.setTransactionSuccessful();
 	break;
 case «name.toUpperCase()»_ID:
 	deleteCount = dbConnection.delete(«name.toFirstUpper()»Table.TABLE_NAME, «name.toFirstUpper()»Table.WHERE_ID_EQUALS, new String[] { uri.getPathSegments().get(1) });
+	dbConnection.setTransactionSuccessful();
 	break;
 «ENDDEFINE»
 
@@ -214,8 +219,10 @@ case «name.toUpperCase()»_ID:
 @Override
 public final Uri insert(final Uri uri, final ContentValues values) {
 	final SQLiteDatabase dbConnection = db.getWritableDatabase();
-	dbConnection.beginTransaction();
+	
 	try {
+		dbConnection.beginTransaction();
+		
     	switch (URI_MATCHER.match(uri)) {
     	«EXPAND insertCases FOREACH eClassifiers-»
 		default:
@@ -224,8 +231,9 @@ public final Uri insert(final Uri uri, final ContentValues values) {
 	} catch (Exception e) {
     	Log.e(TAG, "Insert Exception", e);
 	} finally {
-    	dbConnection.endTransaction();
+		dbConnection.endTransaction();
 	}
+	
 	return null;
 }
 «ENDDEFINE»
@@ -255,16 +263,26 @@ case «name.toUpperCase()»_ID:
 public final int update(final Uri uri, final ContentValues values, final String selection, final String[] selectionArgs) {
 	«IF !eClassifiers.isEmpty»
 	final SQLiteDatabase dbConnection = db.getWritableDatabase();
-    int count = 0;
-    switch (URI_MATCHER.match(uri)) {
-    «EXPAND updateCases FOREACH eClassifiers-»
-	default:
-		throw new IllegalArgumentException("Unsupported URI:" + uri);
+    int updateCount = 0;
+    
+    try{
+    	dbConnection.beginTransaction();
+    	
+    	switch (URI_MATCHER.match(uri)) {
+    
+    	«EXPAND updateCases FOREACH eClassifiers-»
+		default:
+			throw new IllegalArgumentException("Unsupported URI:" + uri);
+    	}
+    } finally{
+		dbConnection.endTransaction();
     }
     
-	getContext().getContentResolver().notifyChange(uri, null);
+    if(updateCount > 0){
+		getContext().getContentResolver().notifyChange(uri, null);
+	}
 
-    return count;
+    return updateCount;
     «ELSE»
     return 0;
 	«ENDIF»
@@ -273,11 +291,13 @@ public final int update(final Uri uri, final ContentValues values, final String 
 
 «DEFINE updateCases FOR EClassifier»
 case «name.toUpperCase()»_DIR:
-	count = dbConnection.update(«name.toFirstUpper()»Table.TABLE_NAME, values, selection, selectionArgs);
+	updateCount = dbConnection.update(«name.toFirstUpper()»Table.TABLE_NAME, values, selection, selectionArgs);
+	dbConnection.setTransactionSuccessful();
 	break;
 case «name.toUpperCase()»_ID:
-	Long «name.toLowerCase()»Id = ContentUris.parseId(uri);
-	count = dbConnection.update(«name.toFirstUpper()»Table.TABLE_NAME, values, «name.toFirstUpper()»Table.ID + "=" + «name.toLowerCase()»Id + (TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")"), selectionArgs);
+	final Long «name.toLowerCase()»Id = ContentUris.parseId(uri);
+	updateCount = dbConnection.update(«name.toFirstUpper()»Table.TABLE_NAME, values, «name.toFirstUpper()»Table.ID + "=" + «name.toLowerCase()»Id + (TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")"), selectionArgs);
+	dbConnection.setTransactionSuccessful();
 	break;
 «ENDDEFINE»
 
@@ -306,7 +326,7 @@ public final String getType(final Uri uri) {
 	switch (URI_MATCHER.match(uri)) {
 	«EXPAND getTypeCases FOREACH eClassifiers-»
 	default:
-    	throw new IllegalArgumentException("Unsupported URI:" + uri);
+    	throw new IllegalArgumentException("Unsupported URI: " + uri);
 	}	
 }	
 «ENDDEFINE»
