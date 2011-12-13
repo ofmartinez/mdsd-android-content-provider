@@ -1,14 +1,15 @@
 «IMPORT ecore»
 
 «EXTENSION de::mdsdacp::template::extensions::DefaultComments»
+«EXTENSION de::mdsdacp::template::extensions::PackageName»
 
 «DEFINE root FOR EPackage»
-	«FILE "de/mdsdacp/contentprovider/Provider.java"-»
-	package de.mdsdacp.contentprovider;
+	«FILE getPackagePath(nsURI)+"/contentprovider/Provider.java"-»
+	package «getPackageName(nsURI)».contentprovider;
 	
-	import de.mdsdacp.database.Database;
+	import «getPackageName(nsURI)».database.Database;
 	«IF !eClassifiers.isEmpty»
-	import de.mdsdacp.database.tables.*;
+	import «getPackageName(nsURI)».database.tables.*;
 	
 	import android.provider.BaseColumns;
 	import android.text.TextUtils;		
@@ -25,7 +26,7 @@
 	
 	/**
 	 * Content provider implementation
-	 * The authority of the content provider is: content://de.mdsdacp.provider.«name»
+	 * The authority of the content provider is: content://«getPackageName(nsURI)».provider.«name»
 	 * 
 	 * More information about content providers:
 	 * @see <a href="http://developer.android.com/reference/android/content/ContentProvider.html">Reference</a>
@@ -35,9 +36,9 @@
 	 * «modifyWarningComment()»
 	 */	
 	public class Provider extends ContentProvider {
-		private static final String TAG = "de.mdsdacp.contentprovider.Provider";
+		private static final String TAG = "«getPackageName(nsURI)».contentprovider.Provider";
 	
-		public static final String AUTHORITY = "de.mdsdacp.provider.«name»";
+		public static final String AUTHORITY = "«getPackageName(nsURI)».provider.«name»";
 		public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
 
 		«EXPAND contentUri FOREACH eClassifiers»
@@ -92,7 +93,7 @@ public static final Uri «name.toUpperCase()»_CONTENT_URI = Uri.withAppendedPat
 public static final class «name.toFirstUpper()»Content implements BaseColumns {
 	/**
 	 * Specifies the content path of the «name.toFirstUpper()»Table for the required uri
-	 * Exact URI: content://de.mdsdacp.provider.«ePackage.name»/«name.toLowerCase()»
+	 * Exact URI: content://«getPackageName(ePackage.nsURI)».provider.«ePackage.name»/«name.toLowerCase()»
 	 */
     public static final String CONTENT_PATH = "«name.toLowerCase()»";
 

@@ -2,6 +2,7 @@
 
 «EXTENSION de::mdsdacp::template::extensions::DefaultComments»
 «EXTENSION de::mdsdacp::template::extensions::Logic»
+«EXTENSION de::mdsdacp::template::extensions::PackageName»
 
 «DEFINE root FOR EPackage»
 	«EXPAND findReferences FOREACH eClassifiers»
@@ -17,8 +18,8 @@
 «ENDDEFINE»
 
 «DEFINE tables FOR EClassifier»
-	«FILE "de/mdsdacp/database/tables/"+name.toFirstUpper()+"Table.java"-»
-		package de.mdsdacp.database.tables;
+	«FILE getPackagePath(ePackage.nsURI)+"/database/tables/"+name.toFirstUpper()+"Table.java"-»
+		package «getPackageName(ePackage.nsURI)».database.tables;
 		
 		/**
 		 * «tableComment()»				  
@@ -152,15 +153,15 @@
 «ENDDEFINE»
 
 «DEFINE database FOR EPackage»
-	«FILE "de/mdsdacp/database/Database.java"-»
-		package de.mdsdacp.database;
+	«FILE getPackagePath(nsURI)+"/database/Database.java"-»
+		package «getPackageName(nsURI)».database;
 		
 		import android.content.Context;
 		import android.database.sqlite.SQLiteDatabase;
 		import android.database.sqlite.SQLiteOpenHelper;
 		
 		«FOREACH eClassifiers AS class ITERATOR iter-»
-    		import de.mdsdacp.database.tables.«class.name.toFirstUpper()»Table;
+    		import «getPackageName(nsURI)».database.tables.«class.name.toFirstUpper()»Table;
 		«ENDFOREACH»
 		
 		/**
