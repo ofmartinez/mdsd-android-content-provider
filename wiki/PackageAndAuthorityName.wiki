@@ -1,7 +1,6 @@
 #Set your own package name and authority for the generated Content Provider
 
-= How to set an individual package name and content provider authrority =
+= How to set an individual package name and Content Provider authrority =
 
- # Go to your model.ecorediag or model.ecore and set the nsUri to a valid Java Package name.
-<br/>[http://www.gfred.de/acp/022.png]<br/> 
+ # Go to your model.ecorediag or model.ecore and set the *nsUri* of the ECore ePackage to a valid Java Package name. <br/>[http://www.gfred.de/acp/022.png]<br/> 
  # Generate your content <br/>[http://www.gfred.de/acp/023.png]<br/> 
