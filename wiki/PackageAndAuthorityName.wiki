@@ -1,4 +1,4 @@
-#Set your own package name and authority for the generated Content Provider
+#summary Set your own package name and authority for the generated Content Provider
 
 = How to set an individual package name and Content Provider authrority =
 
