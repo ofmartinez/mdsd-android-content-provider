@@ -4,16 +4,16 @@
 = Quickstart Guide =
  # Create a new Android project. A Hello World example how to create a new Android project is described here: [http://developer.android.com/resources/tutorials/hello-world.html]
  # Create a new model file
-  # Right Click on the Android project and click New -> other<br/>[http://www.gfred.de/acp/007.png]<br/>
-  # Select *Android Content Provider Model* inside the Android folder.<br/>[http://www.gfred.de/acp/008.png]<br/> 
-  # Select a container (your current Android project) and a model filename (model filename should be end with .ecore) <br/>[http://www.gfred.de/acp/009.png]<br/>
-  # A folder *model* and two files are created inside your Android project.<br/>[http://www.gfred.de/acp/010.png]<br/>Both files can be used to develop your domain model. With the *ecorediag* file you can draw a domain model with a graphical editor. The *ecore* file represents only the xml structure of your model, but you can develop your domain model here too.<br/>
- # Create your first domain model with the graphical editor. In this example you create only a very simple domain model with a datatype called People which has two attributes name and surname.<br/>Open the ecorediag file and create your domain model. Create a class and call it *People*. Add two attributes *name* and *surname* from the type *EString*. Remember: You can only use the specific ecore datatypes which are the same like the simple datatypes from Java. Only with a prefix letter: E.<br/>[http://www.gfred.de/acp/011.png]<br/>Save your model now.<br/>
- # Open the ecore file and see what is happend.<br/>[http://www.gfred.de/acp/013.png]<br/>The ecore file represents your model in xml. Now right click the ecore file and click *Android Tools -> Generate Android Content Provider* The content provider will be generated with your model.<br/>[http://www.gfred.de/acp/014.png]<br/>
+  # Right Click on the Android project and click New -> other<br/>[http://www.fg85.de/acp/007.png]<br/>
+  # Select *Android Content Provider Model* inside the Android folder.<br/>[http://www.fg85.de/acp/008.png]<br/> 
+  # Select a container (your current Android project) and a model filename (model filename should be end with .ecore) <br/>[http://www.fg85.de/acp/009.png]<br/>
+  # A folder *model* and two files are created inside your Android project.<br/>[http://www.fg85.de/acp/010.png]<br/>Both files can be used to develop your domain model. With the *ecorediag* file you can draw a domain model with a graphical editor. The *ecore* file represents only the xml structure of your model, but you can develop your domain model here too.<br/>
+ # Create your first domain model with the graphical editor. In this example you create only a very simple domain model with a datatype called People which has two attributes name and surname.<br/>Open the ecorediag file and create your domain model. Create a class and call it *People*. Add two attributes *name* and *surname* from the type *EString*. Remember: You can only use the specific ecore datatypes which are the same like the simple datatypes from Java. Only with a prefix letter: E.<br/>[http://www.fg85.de/acp/011.png]<br/>Save your model now.<br/>
+ # Open the ecore file and see what is happend.<br/>[http://www.fg85.de/acp/013.png]<br/>The ecore file represents your model in xml. Now right click the ecore file and click *Android Tools -> Generate Android Content Provider* The content provider will be generated with your model.<br/>[http://www.fg85.de/acp/014.png]<br/>
  # Now the Android Content Provider classes are generated into the 
-*src-gen* folder.<br/>[http://www.gfred.de/acp/015.png]<br/>
+*src-gen* folder.<br/>[http://www.fg85.de/acp/015.png]<br/>
  # In the next step you must bind the content provider to your app.
-  # Open the *ContentProvider.xml* inside the src-gen folder and copy the line which starts with *<provier ...* and ends with *..defaultname" />*<br/>[http://www.gfred.de/acp/016.png]<br/>
-  # Open the *AndroidManifest.xml* of your project.<br/>[http://www.gfred.de/acp/017.png]<br/>
-  # Insert the copied line inside the *AndroidManifest.xml* inside the <application> element<br/>[http://www.gfred.de/acp/018.png]<br/>
+  # Open the *ContentProvider.xml* inside the src-gen folder and copy the line which starts with *<provier ...* and ends with *..defaultname" />*<br/>[http://www.fg85.de/acp/016.png]<br/>
+  # Open the *AndroidManifest.xml* of your project.<br/>[http://www.fg85.de/acp/017.png]<br/>
+  # Insert the copied line inside the *AndroidManifest.xml* inside the <application> element<br/>[http://www.fg85.de/acp/018.png]<br/>
  # Finally, the content provider is ready for use inside your Android project. How the Android Content Provider can be used, is described in another quickstart tutorial: [http://code.google.com/p/mdsd-android-content-provider/wiki/consume_the_provider]
