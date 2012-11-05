@@ -125,7 +125,9 @@
 		case 'EFloat':
 			'+","+' + name.toUpperCase() + '+ " REAL"'
 		case 'EFloatObject':
-			'+","+' + name.toUpperCase() + '+ " REAL"'		
+			'+","+' + name.toUpperCase() + '+ " REAL"'	
+		case 'EByteArray':
+			'+","+' + name.toUpperCase() + '+ " BLOB"'	
 		default: 
 			'+","+' + name.toUpperCase() + '+ " TEXT"'
 	}-»
