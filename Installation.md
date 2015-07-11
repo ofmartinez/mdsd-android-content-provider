@@ -1,0 +1,9 @@
+# Installation Guide #
+
+  1. Download Eclipse Modeling Tools (includes Incubating Components) from http://www.eclipse.org<br />![http://www.fg85.de/acp/001.png](http://www.fg85.de/acp/001.png)<br />
+  1. Extract and execute the downloaded Eclipse version
+  1. Goto the **Eclipse Modeling Components Discovery** (Help -> Install Modeling Components) and download/install the **Xtext** and **Xpand** component. <font color='red'>With Eclipse Indigo (3.7) it is only necessary to install the Xtext plugin, because Xpand is already included.</font><br />![http://www.fg85.de/acp/003.png](http://www.fg85.de/acp/003.png)<br />
+  1. Restart Eclipse and install the Android SDK http://developer.android.com/sdk/index.html and the Android Development Tools (ADT) for Eclipse: http://developer.android.com/sdk/eclipse-adt.html <br />How to install the ADT is described here: http://developer.android.com/sdk/eclipse-adt.html#installing<br />![http://www.fg85.de/acp/004.png](http://www.fg85.de/acp/004.png)<br />![http://www.fg85.de/acp/006.png](http://www.fg85.de/acp/006.png)<br />
+  1. Download the de.mdsdacp.eclipse.plugin\_0.9.6.jar and the de.mdsdacp.acpgen\_0.9.7.jar Eclipse plugin http://code.google.com/p/mdsd-android-content-provider/downloads/list and move these files into the dropins folder inside your Eclipe installation folder<br />![http://www.fg85.de/acp/005.png](http://www.fg85.de/acp/005.png)<br />
+  1. Restart Eclipse
+  1. Now you have successful installed the **MDSD - Android Content Provider Generation** plugin for Eclipse. Get a quickstart here: http://code.google.com/p/mdsd-android-content-provider/wiki/Quickstart
